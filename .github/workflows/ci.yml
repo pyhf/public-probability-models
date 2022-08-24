@@ -81,9 +81,16 @@ jobs:
         run: |
           find artifacts -name "*.json" -print0 | xargs -0 -I file mv "file" deploy/
 
+      - name: Make landing page
+        run: |
+          find deploy -name "*.json" -type f -exec basename --zero {} \; | xargs -0 -I file printf '<li>file</li>\n' | xargs -I INSERTED gsed -e 's|\$links|INSERTED|' templates/index.html > deploy/index.html
+
       - name: List contents
         run: ls -R
         working-directory: deploy
+
+      - name: Check landing page contents
+        run: cat deploy/index.html
 
       - name: Upload artifacts
         uses: actions/upload-pages-artifact@v1
