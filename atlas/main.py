@@ -9,16 +9,16 @@ from selenium.webdriver.support.wait import WebDriverWait
 
 import json
 
-url = 'https://twiki.cern.ch/twiki/bin/view/AtlasPublic'
+url = "https://twiki.cern.ch/twiki/bin/view/AtlasPublic"
 
 service = Service(ChromeDriverManager().install())
 
 options = Options()
 options.add_argument("--headless")
-options.add_argument('--no-sandbox')
-options.add_argument('--disable-gpu')
-options.add_argument('--disable-dev-shm-usage')
-options.add_argument('disable-infobars')
+options.add_argument("--no-sandbox")
+options.add_argument("--disable-gpu")
+options.add_argument("--disable-dev-shm-usage")
+options.add_argument("disable-infobars")
 options.add_argument("--disable-extensions")
 
 with webdriver.Chrome(options=options, service=service) as driver:
@@ -38,9 +38,9 @@ with webdriver.Chrome(options=options, service=service) as driver:
     # show all publications
     Select(
         driver.find_element(By.CSS_SELECTOR, 'select[name="publications_length"]')
-    ).select_by_visible_text('All')
+    ).select_by_visible_text("All")
     # get all publications visible / left in the table
-    rows = driver.find_elements('css selector', '#publications > tbody > tr')
+    rows = driver.find_elements("css selector", "#publications > tbody > tr")
 
     data = []
     # iterate and print information
@@ -49,14 +49,20 @@ with webdriver.Chrome(options=options, service=service) as driver:
         short_title = elements[0]
         links = elements[-1].find_elements("css selector", "a")
         hepdata = [
-            link.get_property('href')
+            link.get_property("href")
             for link in links
-            if link.text.lower() == 'hepdata'
+            if link.text.lower() == "hepdata"
         ]
         document = [
-            link.get_property('href')
+            link.get_property("href")
             for link in links
-            if link.text.lower() == 'documents'
+            if link.text.lower() == "documents"
         ]
-        data.append(dict(title=short_title.text, hepdata=hepdata[0] if hepdata else None, link=document[0]))
+        data.append(
+            dict(
+                title=short_title.text,
+                hepdata=hepdata[0] if hepdata else None,
+                link=document[0],
+            )
+        )
     print(json.dumps(data, indent=4, sort_keys=True))
