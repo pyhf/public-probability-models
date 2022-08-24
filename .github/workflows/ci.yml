@@ -68,16 +68,24 @@ jobs:
         id: pages
         uses: actions/configure-pages@v1
 
-      - name: Download documents
+      - name: Download artifacts
         uses: actions/download-artifact@v2
         with:
-          path: deploy/
+          path: artifacts/
+
+      - name: List artifacts
+        run: ls -R
+        working-directory: artifacts
+
+      - name: Move to deploy directory
+        run: |
+          find artifacts -name "*.json" -print0 | xargs -0 -I file mv "file" deploy/
 
       - name: List contents
         run: ls -R
         working-directory: deploy
 
-      - name: Upload artifact
+      - name: Upload artifacts
         uses: actions/upload-pages-artifact@v1
         with:
           path: deploy/
