@@ -30,12 +30,12 @@ jobs:
         kind:
           - atlas
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
-      - name: Set up Python 3.9
-        uses: actions/setup-python@v2
+      - name: Set up Python
+        uses: actions/setup-python@v4
         with:
-          python-version: 3.9
+          python-version: "3.x"
 
       - name: Remove Chrome
         run: sudo apt purge google-chrome-stable
@@ -66,7 +66,7 @@ jobs:
 
       - name: Setup Pages
         id: pages
-        uses: actions/configure-pages@v1
+        uses: actions/configure-pages@v2
 
       - name: Download artifacts
         uses: actions/download-artifact@v2
@@ -91,7 +91,7 @@ jobs:
           path: deploy/
 
   deploy:
-    if: github.ref == 'refs/heads/main'
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
