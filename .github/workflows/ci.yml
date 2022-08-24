@@ -83,7 +83,7 @@ jobs:
 
       - name: Make landing page
         run: |
-          find deploy -name "*.json" -type f -exec basename --zero {} \; | xargs -0 -I file printf '<li>file</li>\n' | xargs -I INSERTED gsed -e 's|\$links|INSERTED|' templates/index.html > deploy/index.html
+          find deploy -name "*.json" -type f -exec basename --zero {} \; | xargs -0 -I file printf '<li><a href="file">file</a></li>\n' | xargs -I INSERTED gsed -e 's|\$links|INSERTED|' templates/index.html > deploy/index.html
 
       - name: List contents
         run: ls -R
