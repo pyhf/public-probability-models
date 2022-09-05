@@ -45,7 +45,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          sudo yum install chromium
+          sudo apt install chromium
           python -m pip install --upgrade pip setuptools wheel
           python -m pip install -r ${{ matrix.kind }}/requirements.txt
 
