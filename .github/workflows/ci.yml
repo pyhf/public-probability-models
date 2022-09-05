@@ -39,9 +39,7 @@ jobs:
 
       - name: Remove Chrome
         run: |
-          sudo apt purge google-chrome-stable
-          sudo rm /usr/bin/chromium
-          sudo rm /usr/bin/chromium-browser
+          sudo apt purge google-chrome-stable chromium-browser
 
       - name: Install dependencies
         run: |
