@@ -41,6 +41,7 @@ jobs:
         run: |
           sudo apt purge google-chrome-stable
           sudo rm /usr/bin/chromium
+          sudo rm /usr/bin/chromium-browser
 
       - name: Install dependencies
         run: |
