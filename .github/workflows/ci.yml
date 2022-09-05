@@ -38,7 +38,9 @@ jobs:
           python-version: "3.x"
 
       - name: Remove Chrome
-        run: sudo apt purge google-chrome-stable
+        run: |
+          sudo apt purge google-chrome-stable
+          sudo rm /usr/bin/chromium
 
       - name: Install dependencies
         run: |
