@@ -41,7 +41,7 @@ jobs:
         run: |
           sudo apt purge google-chrome-stable
 
-      - name: Install ChromeDriver 104
+      - name: Install ChromeDriver 105
         run: |
           curl https://chromedriver.storage.googleapis.com/105.0.5195.19/chromedriver_linux64.zip -o chromedriver.zip
           sudo rm /usr/bin/chromedriver
@@ -50,7 +50,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          sudo apt install chromium-browser
+          #sudo apt install chromium-browser
           python -m pip install --upgrade pip setuptools wheel
           python -m pip install -r ${{ matrix.kind }}/requirements.txt
 
