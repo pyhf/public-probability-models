@@ -43,8 +43,12 @@ jobs:
 
       - name: Install Chrome 105
         run: |
+          which chromium
           #sudo apt install google-chrome-stable==105.0.5195.102-1
           sudo snap install chromium
+          which chromium
+          ls -lavh /usr/bin/chromium
+          chromium --version
 
       - name: Install dependencies
         run: |
