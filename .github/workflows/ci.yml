@@ -67,6 +67,11 @@ jobs:
           python -m pip install --upgrade pip setuptools wheel
           python -m pip install -r ${{ matrix.kind }}/requirements.txt
 
+      - name: Check Versions
+        run: |
+          chromium --version
+          chromedriver -v
+
       - name: Generate list of models
         run: python ${{ matrix.kind }}/main.py > ${{ matrix.kind }}.json
 
