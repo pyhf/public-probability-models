@@ -41,7 +41,7 @@ jobs:
             jq
           chromium --version
 
-      - name: Install dependencies
+      - name: Install Python dependencies
         run: |
           python -m venv venv
           . venv/bin/activate
