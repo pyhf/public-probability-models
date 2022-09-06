@@ -54,6 +54,7 @@ jobs:
       - name: Install ChromeDriver 105
         run: |
           which chromedriver
+          ls -lavh /usr/bin/chromedriver
           sudo rm /usr/bin/chromedriver
           curl https://chromedriver.storage.googleapis.com/105.0.5195.19/chromedriver_linux64.zip -o chromedriver.zip
           sudo rm /usr/bin/chromedriver
