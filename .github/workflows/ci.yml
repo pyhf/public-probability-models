@@ -44,6 +44,7 @@ jobs:
       - name: Install ChromeDriver 104
         run: |
           curl https://chromedriver.storage.googleapis.com/104.0.5112.79/chromedriver_linux64.zip -o chromedriver.zip
+          sudo rm /usr/bin/chromedriver
           sudo unzip chromedriver.zip -d /usr/bin/
 
       - name: Install dependencies
