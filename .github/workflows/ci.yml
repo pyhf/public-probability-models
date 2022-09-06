@@ -40,19 +40,29 @@ jobs:
       - name: Remove Chrome
         run: |
           sudo apt purge google-chrome-stable chromium chromium-browser
+          sudo apt purge chromium-chromedriver
 
-      - name: Install Chrome 105
+      - name: Install Chromium 105
         run: |
           which chromium
+          ls -lavh /usr/bin/chromium
           #sudo apt install google-chrome-stable==105.0.5195.102-1
           sudo snap install chromium
           which chromium
           ls -lavh /usr/bin/chromium
           chromium --version
 
+      - name: Install ChromeDriver 105
+        run: |
+          which chromedriver
+          curl https://chromedriver.storage.googleapis.com/105.0.5195.19/chromedriver_linux64.zip -o chromedriver.zip
+          sudo rm /usr/bin/chromedriver
+          sudo unzip chromedriver.zip -d /usr/bin/
+          which chromdriver
+          chromedriver -v
+
       - name: Install dependencies
         run: |
-          #sudo apt install chromium-browser
           python -m pip install --upgrade pip setuptools wheel
           python -m pip install -r ${{ matrix.kind }}/requirements.txt
 
