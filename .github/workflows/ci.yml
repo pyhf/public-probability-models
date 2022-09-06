@@ -38,12 +38,39 @@ jobs:
           python-version: "3.x"
 
       - name: Remove Chrome
-        run: sudo apt purge google-chrome-stable
+        run: |
+          sudo apt purge google-chrome-stable chromium chromium-browser chromium-chromedriver
+
+      - name: Install Chromium 105
+        run: |
+          which chromium
+          ls -lavh /usr/bin/chromium
+          #sudo apt install google-chrome-stable==105.0.5195.102-1
+          sudo snap install chromium
+          which chromium
+          ls -lavh /usr/bin/chromium
+          chromium --version
+
+      - name: Install ChromeDriver 105
+        run: |
+          which chromedriver
+          find /usr/bin -name "chromedriver"
+          ls -lavh /usr/bin/chromedriver
+          sudo rm /usr/bin/chromedriver
+          curl https://chromedriver.storage.googleapis.com/105.0.5195.19/chromedriver_linux64.zip -o chromedriver.zip
+          sudo unzip chromedriver.zip -d /usr/bin/
+          ls -lavh /usr/bin/chromedriver
+          chromedriver -v
 
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip setuptools wheel
           python -m pip install -r ${{ matrix.kind }}/requirements.txt
+
+      - name: Check Versions
+        run: |
+          chromium --version
+          chromedriver -v
 
       - name: Generate list of models
         run: python ${{ matrix.kind }}/main.py > ${{ matrix.kind }}.json
