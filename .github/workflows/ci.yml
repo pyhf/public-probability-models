@@ -49,7 +49,9 @@ jobs:
           python -m pip install -r ${{ matrix.kind }}/requirements.txt
 
       - name: Generate list of models
-        run: python ${{ matrix.kind }}/main.py > ${{ matrix.kind }}.json
+        run: |
+          . venv/bin/activate
+          python ${{ matrix.kind }}/main.py > ${{ matrix.kind }}.json
 
       - name: Check valid JSON
         run: jq -reM '""' ${{ matrix.kind }}.json
