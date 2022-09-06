@@ -39,8 +39,7 @@ jobs:
 
       - name: Remove Chrome
         run: |
-          sudo apt purge google-chrome-stable chromium chromium-browser
-          sudo apt purge chromium-chromedriver
+          sudo apt purge google-chrome-stable chromium chromium-browser chromium-chromedriver
 
       - name: Install Chromium 105
         run: |
@@ -55,6 +54,7 @@ jobs:
       - name: Install ChromeDriver 105
         run: |
           which chromedriver
+          rm /usr/bin/chromedriver
           curl https://chromedriver.storage.googleapis.com/105.0.5195.19/chromedriver_linux64.zip -o chromedriver.zip
           sudo rm /usr/bin/chromedriver
           sudo unzip chromedriver.zip -d /usr/bin/
