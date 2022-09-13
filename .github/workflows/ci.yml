@@ -37,7 +37,7 @@ jobs:
         run: |
           apt-get update
           apt-get install --no-install-recommends -y \
-            chromium=105.0.5195.52-1~deb11u1 \
+            chromium \
             jq
           chromium --version
 
