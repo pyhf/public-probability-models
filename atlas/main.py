@@ -70,9 +70,9 @@ with webdriver.Chrome(options=options, service=service) as driver:
         data.append(
             dict(
                 title=short_title.text,
-                physics-group=physics_group.text,
+                physicsGroup=physics_group.text,
                 date=date.text,
-                com-energy-tev=com_energy_tev.text,
+                comEnergyTeV=com_energy_tev.text,
                 luminosity=luminosity.text,
                 hepdata=hepdata[0] if hepdata else None,
                 link=document[0],
