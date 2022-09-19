@@ -46,8 +46,16 @@ with webdriver.Chrome(options=options, service=service) as driver:
     # iterate and print information
     for row in rows:
         elements = row.find_elements("css selector", "td")
+        # elements are following the ordering of the table on the Twiki
+        # Currently:
+        # Short Title, Group, Journal Reference, Date, \sqrt{s} (TeV), L, Links
         short_title = elements[0]
+        physics_group = elements[1]
+        date = elements[3]
+        com_energy_tev = elements[4]
+        luminosity = elements[5]
         links = elements[-1].find_elements("css selector", "a")
+
         hepdata = [
             link.get_property("href")
             for link in links
@@ -58,11 +66,17 @@ with webdriver.Chrome(options=options, service=service) as driver:
             for link in links
             if link.text.lower() == "documents"
         ]
+
         data.append(
             dict(
                 title=short_title.text,
+                physics_group=physics_group.text,
+                date=date.text,
+                com_energy_tev=com_energy_tev.text,
+                luminosity=luminosity.text,
                 hepdata=hepdata[0] if hepdata else None,
                 link=document[0],
             )
         )
+
     print(json.dumps(data, indent=4, sort_keys=True))
