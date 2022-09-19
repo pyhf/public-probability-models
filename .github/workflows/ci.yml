@@ -56,6 +56,9 @@ jobs:
       - name: Check valid JSON
         run: jq -reM '""' ${{ matrix.kind }}.json
 
+      - name: cat models file to log
+        run: cat ${{ matrix.kind }}.json
+
       - name: Upload generated list
         uses: actions/upload-artifact@v3
         with:
