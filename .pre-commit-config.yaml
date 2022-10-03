@@ -16,8 +16,6 @@ repos:
     - id: check-xml
     - id: debug-statements
     - id: end-of-file-fixer
-      # exclude generated files
-      exclude: ^validation/|\.dtd$|\.json$|\.xml$
     - id: mixed-line-ending
     - id: name-tests-test
       args: ["--pytest-test-first"]
