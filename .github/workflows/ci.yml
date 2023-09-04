@@ -31,7 +31,7 @@ jobs:
         kind:
           - atlas
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Install Chromium
         run: |
@@ -70,7 +70,7 @@ jobs:
     needs: list_models
     steps:
       - name: Set up Git repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Setup Pages
         id: pages
