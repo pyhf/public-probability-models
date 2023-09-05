@@ -37,12 +37,9 @@ jobs:
         run: |
           apt-get update
           apt-get install --no-install-recommends -y \
-            jq \
-            chromium
-          wget https://edgedl.me.gvt1.com/edgedl/chrome/chrome-for-testing/116.0.5845.96/linux64/chromedriver-linux64.zip -O temp.zip
-          unzip temp.zip
-          rm temp.zip
-          echo "PATH=$(PWD)/chromedriver-linux64:${PATH}" >> "$GITHUB_ENV"
+            chromium \
+            jq
+          chromium --version
 
       - name: Install Python dependencies
         run: |
