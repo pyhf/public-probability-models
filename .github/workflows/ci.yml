@@ -25,21 +25,14 @@ on:
 jobs:
   list_models:
     runs-on: ubuntu-latest
-    container: python:3.10-bullseye
     strategy:
       matrix:
         kind:
           - atlas
     steps:
       - uses: actions/checkout@v4
-
-      - name: Install Chromium
-        run: |
-          apt-get update
-          apt-get install --no-install-recommends -y \
-            chromium \
-            jq
-          chromium --version
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v4
 
       - name: Install Python dependencies
         run: |
