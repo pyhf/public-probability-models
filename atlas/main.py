@@ -1,8 +1,4 @@
 from selenium import webdriver
-
-# from webdriver_manager.chrome import ChromeDriverManager
-
-from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import Select
@@ -12,8 +8,6 @@ import json
 
 url = "https://twiki.cern.ch/twiki/bin/view/AtlasPublic"
 
-# service = Service(ChromeDriverManager().install())
-
 options = Options()
 options.add_argument("--headless")
 options.add_argument("--no-sandbox")
@@ -22,7 +16,7 @@ options.add_argument("--disable-dev-shm-usage")
 options.add_argument("disable-infobars")
 options.add_argument("--disable-extensions")
 
-with webdriver.Chrome(options=options) as driver:  # , service=service) as driver:
+with webdriver.Chrome(options=options) as driver:
     driver.get(url)
 
     # it's asynchronous so we force a wait
