@@ -23,7 +23,7 @@ repos:
     - id: trailing-whitespace
 
 -   repo: https://github.com/asottile/pyupgrade
-    rev: v3.15.0
+    rev: v3.15.2
     hooks:
     - id: pyupgrade
       args: ["--py37-plus"]
@@ -34,7 +34,7 @@ repos:
     - id: absolufy-imports
 
 -   repo: https://github.com/psf/black
-    rev: 23.12.1
+    rev: 24.3.0
     hooks:
     - id: black-jupyter
 
@@ -44,7 +44,7 @@ repos:
     - id: yesqa
 
 -   repo: https://github.com/PyCQA/flake8
-    rev: 6.1.0
+    rev: 7.0.0
     hooks:
     - id: flake8
       args: ["--count", "--statistics", "--extend-ignore='E203, E402, E501'", "--max-line-length=88"]
