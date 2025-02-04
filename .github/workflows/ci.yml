@@ -55,7 +55,7 @@ jobs:
         run: cat ${{ matrix.kind }}.json
 
       - name: Upload generated list
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: ${{ matrix.kind }}
           path: ${{ matrix.kind }}.json
@@ -69,10 +69,10 @@ jobs:
 
       - name: Setup Pages
         id: pages
-        uses: actions/configure-pages@v4
+        uses: actions/configure-pages@v5
 
       - name: Download artifacts
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           path: artifacts/
 
